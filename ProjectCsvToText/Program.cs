@@ -14,7 +14,6 @@ namespace ProjectCsvToText
             string csv_file_path = ConfigurationManager.AppSettings["csv_file_path"];
             string output_File_Path = ConfigurationManager.AppSettings["outputFilePath"];
             GetdataTableCsv(csv_file_path, output_File_Path);
-
         }
         public bool IsfileExists(string path) { return path != null; }
         public static DataTable GetdataTableCsv(string csv_file_path, string output_File_Path)
