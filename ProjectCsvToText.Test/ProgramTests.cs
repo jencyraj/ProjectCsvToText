@@ -7,14 +7,15 @@ using System.Configuration;
 using System.Collections;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.IO;
 
 namespace ProjectCsvToText.Test
 {
     [TestFixture]
     public class ProgramTests
     {
-        string output_File_StreetAddress = "C:/Users/jency/source/repos/ProjectCsvToText/OutputFiles/outputSortByStreetName.txt";
-        string output_File_Path = "C:/Users/jency/source/repos/ProjectCsvToText/OutputFiles/outputByFrequency.txt";
+        string output_File_StreetAddress = "C:/Users/jency/source/repos/ProjectCsvToText.Test/OutputFileTest/outputSortByStreetNameTest.txt";
+        string output_File_Path = "C:/Users/jency/source/repos/ProjectCsvToText.Test/OutputFileTest/outputByFrequencyTest.txt";
         string csv_file_path = "C:/Users/jency/source/repos/ProjectCsvToText/InputFile/data.csv";
         string header = "Test Cases";
         [SetUp]
@@ -29,6 +30,7 @@ namespace ProjectCsvToText.Test
         [TestCaseSource("_sourceLists")]
         public void test_Frequency_order(List<string> list)
         {
+            File.WriteAllText(output_File_Path, string.Empty);
             try
             {
                 Program program = new Program();
@@ -44,6 +46,7 @@ namespace ProjectCsvToText.Test
         [Test] //New test case inputs
         public void TestAlbhabeticOrderNewList()
         {
+            File.WriteAllText(output_File_Path, string.Empty);
             try
             {
                 List<string> test_List_Input = new List<string> { "Sara", "Ann", "Ben", "Zen", "Eva" };
@@ -60,6 +63,7 @@ namespace ProjectCsvToText.Test
         [TestCaseSource("_sourceLists")]//Original Input
         public void TestIsOrderalbhabetical(List<string> list_input)
         {
+            File.WriteAllText(output_File_Path, string.Empty);
             try
             {
                 List<string> test_List_Output = new List<string> { "Clive", "Graham", "James", "Jimmy", "John" };
@@ -88,6 +92,7 @@ namespace ProjectCsvToText.Test
         [Test] //Test with Diffrent Input
         public void TestStreetNameSort()
         {
+            File.WriteAllText(output_File_StreetAddress, string.Empty);
             try
             {
                 List<string> test_List_Input = new List<string> { "17 ZBC", "18 ABC", "22 Nyhems", "18 Patric" };
@@ -102,6 +107,7 @@ namespace ProjectCsvToText.Test
         [Test] //New test case inputs
         public void TestNameshouldBeAscendingOrder()
         {
+            File.WriteAllText(output_File_Path, string.Empty);
             try
             {
                 List<string> test_List_Input = new List<string> { "Sara", "Ann", "Ben", "Zen", "Eva" };
@@ -116,6 +122,7 @@ namespace ProjectCsvToText.Test
         [Test] //New test case inputs
         public void TestNameshouldBeAlphabetic()
         {
+            File.WriteAllText(output_File_Path, string.Empty);
             try
             {
                 List<string> test_List_Input = new List<string> { "Sara", "Ann", "Ben", "Zen", "Eva" };
