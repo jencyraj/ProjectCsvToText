@@ -73,27 +73,7 @@ namespace ProjectCsvToText
                 Console.WriteLine(" Exception : " + ex);
             }
         }
-        public static List<string> ListSortbyStreetName(List<string> listAddress,string output_File_StreetAddress, string header)
-        {
-            File.WriteAllText(output_File_StreetAddress, string.Empty);
-
-            bool header_line = true;
-            List<string> list_test = new List<string>();
-            foreach (var grp in listAddress.OrderBy(item => item.Split(' ').ElementAtOrDefault(1)))
-            {
-                using (TextWriter Tw = new StreamWriter(output_File_StreetAddress, true))
-                {
-                    if (header_line)
-                    {
-                        Tw.WriteLine(header);
-                        header_line = false;
-                    }
-                    Tw.WriteLine(grp);
-                    list_test.Add(grp.ToString());
-                }
-            }
-            return list_test;
-        }
+        //Task 1 List first and last name order By frequency
         public static List<string> ListOrderbyFrequency(List<string> listData,string output_File_Path, string Header)
         {
             bool header_line = true;
@@ -114,6 +94,7 @@ namespace ProjectCsvToText
             }
             return list_test;
         }
+        //Task 2 List first and last name Sort by Albhabetical
         public static List<string> ListOrderbyAlphabetical(List<string> listData,string output_File_Path, string Header)
         {
             List<string> Test_list = new List<string>();
@@ -140,6 +121,28 @@ namespace ProjectCsvToText
                 }
             }
             return Test_list;
+        }
+        //Task 3 show the addresses sorted alphabetically by street name 
+        public static List<string> ListSortbyStreetName(List<string> listAddress, string output_File_StreetAddress, string header)
+        {
+            File.WriteAllText(output_File_StreetAddress, string.Empty);
+
+            bool header_line = true;
+            List<string> list_test = new List<string>();
+            foreach (var grp in listAddress.OrderBy(item => item.Split(' ').ElementAtOrDefault(1)))
+            {
+                using (TextWriter Tw = new StreamWriter(output_File_StreetAddress, true))
+                {
+                    if (header_line)
+                    {
+                        Tw.WriteLine(header);
+                        header_line = false;
+                    }
+                    Tw.WriteLine(grp);
+                    list_test.Add(grp.ToString());
+                }
+            }
+            return list_test;
         }
     }
 }
