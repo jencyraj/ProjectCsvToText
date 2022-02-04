@@ -37,10 +37,11 @@ namespace ProjectCsvToText
                         dr["Address"] = strRow[2];
                         csvData.Rows.Add(dr);
                     }
+                    sr.Close();
                 }
                 catch (Exception ex)
                 {
-                    Console.Write("<script>alert('" + ex.Message.Replace("\'", " ") + "')</script>");
+                    Console.WriteLine(" Exception: " + ex);
                 }
             }
             WritedataIntoTxtfile(csvData, output_File_Path);
@@ -48,14 +49,12 @@ namespace ProjectCsvToText
         }
         private static void WritedataIntoTxtfile(DataTable csvData,string output_File_Path)
         {
-            
-            File.WriteAllText(output_File_Path, string.Empty); // remove all text before written
-            //File.WriteAllText(output_File_StreetAddress, string.Empty);
-            List<string> ListDataFirstName = new List<String>();
-            List<string> ListDataLastName = new List<string>();
-            List<string> ListAddress = new List<string>();
             try
             {
+                File.WriteAllText(output_File_Path, string.Empty); // remove all text before written
+                List<string> ListDataFirstName = new List<String>();
+                List<string> ListDataLastName = new List<string>();
+                List<string> ListAddress = new List<string>();
                 for (int i = 1; i < csvData.Rows.Count; i++)
                 {
                     ListDataFirstName.Add(csvData.Rows[i][0].ToString());
@@ -72,7 +71,7 @@ namespace ProjectCsvToText
             }
             catch (Exception ex)
             {
-                Console.Write("<script>alert('" + ex.Message.Replace("\'", " ") + "')</script>");
+                Console.WriteLine(" Exception : " + ex);
             }
         }
         public static List<string> ListSortbyStreetName(List<string> listAddress,string output_File_StreetAddress, string header)
