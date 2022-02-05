@@ -10,13 +10,13 @@ Owen : 2
 Brown : 2
 Howe : 2
 List FirstNames orderBy Alphabets
- Clive : 2
- Graham : 2
- James : 2
- Jimmy : 1
- John : 1
+ Clive
+ Graham
+ James
+ Jimmy
+ John
 List LastNames orderBy Alphabets
- Brown : 2
- Howe : 2
- Owen : 2
- Smith : 2
+ Brown
+ Howe
+ Owen
+ Smith

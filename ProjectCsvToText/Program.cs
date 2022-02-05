@@ -116,7 +116,7 @@ namespace ProjectCsvToText
                         Tw.WriteLine(Header);
                         header_line = false;
                     }
-                    Tw.WriteLine($" {Name} : {Frequency}");
+                    Tw.WriteLine($" {Name}");
                     Test_list.Add(Name);
                 }
             }
