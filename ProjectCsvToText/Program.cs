@@ -7,18 +7,22 @@ using System.Configuration;
 
 namespace ProjectCsvToText
 {
-    public  class Program : Ifileexists
+    public  class Program : IFileexists
     {
+        DataTable csvData = new();
         public static void Main()
         {
+            Program method = new();
             string csv_file_path = ConfigurationManager.AppSettings["csv_file_path"];
             string output_File_Path = ConfigurationManager.AppSettings["outputFilePath"];
-            GetdataTableCsv(csv_file_path, output_File_Path);
+            method.csvData = method.LoadData(csv_file_path, output_File_Path);
         }
+       
+
         public bool IsfileExists(string path) { return path != null; }
-        public static DataTable GetdataTableCsv(string csv_file_path, string output_File_Path)
+        public  DataTable LoadData(string csv_file_path, string output_File_Path)
         {
-            DataTable csvData = new DataTable();
+            //DataTable csvData = new DataTable();
             csvData.Columns.Add("FirstName", typeof(string));
             csvData.Columns.Add("LastName", typeof(string));
             csvData.Columns.Add("Address", typeof(string));
@@ -35,6 +39,7 @@ namespace ProjectCsvToText
                         dr["LastName"] = strRow[1];
                         dr["Address"] = strRow[2];
                         csvData.Rows.Add(dr);
+                        
                     }
                     sr.Close();
                 }
@@ -43,10 +48,10 @@ namespace ProjectCsvToText
                     Console.WriteLine(" Exception: " + ex);
                 }
             }
-            WritedataIntoTxtfile(csvData, output_File_Path);
+            WritedataIntoTxtfile(output_File_Path);
             return csvData;
         }
-        private static void WritedataIntoTxtfile(DataTable csvData,string output_File_Path)
+        private void WritedataIntoTxtfile(string output_File_Path)
         {
             try
             {
@@ -74,7 +79,7 @@ namespace ProjectCsvToText
             }
         }
         //Task 1 List first and last name order By frequency
-        public static List<string> ListOrderbyFrequency(List<string> listData,string output_File_Path, string Header)
+        public  List<string> ListOrderbyFrequency(List<string> listData,string output_File_Path, string Header)
         {
             bool header_line = true;
             List<string> list_test = new List<string>();
@@ -95,7 +100,7 @@ namespace ProjectCsvToText
             return list_test;
         }
         //Task 2 List first and last name Sort by Albhabetical
-        public static List<string> ListOrderbyAlphabetical(List<string> listData,string output_File_Path, string Header)
+        public  List<string> ListOrderbyAlphabetical(List<string> listData,string output_File_Path, string Header)
         {
             List<string> Test_list = new List<string>();
             bool header_line = true;
@@ -123,10 +128,9 @@ namespace ProjectCsvToText
             return Test_list;
         }
         //Task 3 show the addresses sorted alphabetically by street name 
-        public static List<string> ListSortbyStreetName(List<string> listAddress, string output_File_StreetAddress, string header)
+        public  List<string> ListSortbyStreetName(List<string> listAddress, string output_File_StreetAddress, string header)
         {
             File.WriteAllText(output_File_StreetAddress, string.Empty);
-
             bool header_line = true;
             List<string> list_test = new List<string>();
             foreach (var grp in listAddress.OrderBy(item => item.Split(' ').ElementAtOrDefault(1)))

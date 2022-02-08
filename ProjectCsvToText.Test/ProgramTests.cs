@@ -36,7 +36,7 @@ namespace ProjectCsvToText.Test
             {
                 Program program = new Program();
                 List<string> test_List = new List<string> { "Clive", "James", "Graham", "Jimmy", "John"};
-                Program.ListOrderbyFrequency(list, output_File_Path, header).Should().BeEquivalentTo(test_List);
+                program.ListOrderbyFrequency(list, output_File_Path, header).Should().BeEquivalentTo(test_List);
             }
             catch (Exception ex)
             {
@@ -49,9 +49,10 @@ namespace ProjectCsvToText.Test
             //File.WriteAllText(output_File_Path, string.Empty);
             try
             {
+                Program program = new Program();
                 List<string> test_List_Input = new List<string> { "Sara", "Ann", "Ben", "Zen", "Eva" };
                 List<string> test_List_Output = new List<string> { "Ann", "Ben", "Eva", "Sara", "Zen" };
-                Program.ListOrderbyAlphabetical(test_List_Input, output_File_Path, header).Should().BeEquivalentTo(test_List_Output);
+                program.ListOrderbyAlphabetical(test_List_Input, output_File_Path, header).Should().BeEquivalentTo(test_List_Output);
             }
             catch(Exception ex)
             {
@@ -66,8 +67,9 @@ namespace ProjectCsvToText.Test
             File.WriteAllText(output_File_Path, string.Empty);
             try
             {
+                Program program = new Program();
                 List<string> test_List_Output = new List<string> { "Clive", "Graham", "James", "Jimmy", "John" };
-                Program.ListOrderbyAlphabetical(list_input, output_File_Path, header).Should().BeEquivalentTo(test_List_Output);
+                program.ListOrderbyAlphabetical(list_input, output_File_Path, header).Should().BeEquivalentTo(test_List_Output);
             }
             catch(Exception ex)
             {
@@ -96,8 +98,9 @@ namespace ProjectCsvToText.Test
         {
             try
             {
+                Program program = new Program();
                 List<string> test_List_Output = new List<string> { "18 ABC", "22 Nyhems", "18 Patric", "17 ZBC" };
-                Program.ListSortbyStreetName(_test_List_Input, output_File_StreetAddress, header).Should().BeEquivalentTo(test_List_Output);
+                program.ListSortbyStreetName(_test_List_Input, output_File_StreetAddress, header).Should().BeEquivalentTo(test_List_Output);
             }
             catch (Exception ex)
             {
@@ -114,8 +117,9 @@ namespace ProjectCsvToText.Test
         {
             try
             {
+                Program program = new Program();
                 List<string> test_List_Input = new List<string> { "Sara", "Ann", "Ben", "Zen", "Eva" };
-                Program.ListOrderbyAlphabetical(_inputlist, output_File_Path, header).Should().BeInAscendingOrder();
+                program.ListOrderbyAlphabetical(_inputlist, output_File_Path, header).Should().BeInAscendingOrder();
             }
             catch (Exception ex)
             {
@@ -133,7 +137,8 @@ namespace ProjectCsvToText.Test
         {
             try
             {
-                List<string> test_list_output = Program.ListOrderbyAlphabetical(_test_list_input, output_File_Path, header);
+                Program program = new Program();
+                List<string> test_list_output = program.ListOrderbyAlphabetical(_test_list_input, output_File_Path, header);
                 foreach(string ch in test_list_output)
                 {
                     bool output = Regex.IsMatch(ch, @"^[a-zA-Z]+$");
@@ -148,7 +153,8 @@ namespace ProjectCsvToText.Test
         [Test]
         public void TestAddressOnlyletterAndNum()
         {
-            DataTable Test_Dt = Program.GetdataTableCsv(csv_file_path, output_File_StreetAddress);
+            Program program = new Program();
+            DataTable Test_Dt = program.LoadData(csv_file_path, output_File_StreetAddress);
             List<string> test_ListAddress = new List<string>();
             try
             {
