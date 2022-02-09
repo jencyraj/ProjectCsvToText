@@ -1,0 +1,27 @@
+Names ordered by frequency descending:
+Name		Count
+----------	------
+Brown		2
+Clive		2
+Graham		2
+Howe		2
+James		2
+Owen		2
+Smith		2
+Jimmy		1
+John		1
+
+
+
+
+Names ordered alphabetically ascending:
+Names
+---------------
+Clive Owen
+Clive Smith
+Graham Brown
+Graham Howe
+James Brown
+James Owen
+Jimmy Smith
+John Howe
