@@ -24,7 +24,6 @@ namespace CsvtoText.Domain.UnitTest
             expectedResult.Add("Smith", 2);
             expectedResult.Add("Jimmy", 1);
             expectedResult.Add("John", 1);
-
             Dictionary<string, int> actualResult = Sorter.GetWordCountDescendingOrder(personList);
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }
